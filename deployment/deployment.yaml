@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-gunicorn-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-gunicorn
+  template:
+    metadata:
+      labels:
+        app: flask-gunicorn
+    spec:
+      containers:
+      - name: flask-gunicorn
+        image: flask-gunicorn-app:v1
+        ports:
+        - containerPort: 8000
+
